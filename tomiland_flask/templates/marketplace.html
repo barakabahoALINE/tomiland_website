@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Marketplace{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='marketplace.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="hero small-hero">
+<div class="hero-text">
+    <h1>Support Local Artisans</h1>
+    <p>Browse eco-friendly, handcrafted products from local communities.</p>
+</div>
+</section>
+
+<section class="marketplace">
+<div class="product-card">
+    <img src="{{ url_for('static', filename='images/basket.jpg') }}" alt="Handwoven Basket">
+    <h2>Handwoven Basket</h2>
+    <p>Made by local artisans using natural fibers. Perfect for decor or storage.</p>
+    <span>$12</span>
+    <button>Add to Cart</button>
+</div>
+
+<div class="product-card">
+    <img src="{{ url_for('static', filename='images/beads.jpg') }}" alt="Beaded Bracelet">
+    <h2>Beaded Bracelet</h2>
+    <p>Colorful and unique, handcrafted using traditional beadwork techniques.</p>
+    <span>$8</span>
+    <button>Add to Cart</button>
+</div>
+
+<div class="product-card">
+    <img src="{{ url_for('static', filename='images/coffee.jpg') }}" alt="Local Coffee">
+    <h2>Local Coffee Beans</h2>
+    <p>Freshly roasted, organic beans sourced directly from Rwandan farmers.</p>
+    <span>$15</span>
+    <button>Add to Cart</button>
+</div>
+</section>
+{% endblock %}

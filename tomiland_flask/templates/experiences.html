@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+
+{% block title %}Experiences{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='experiences.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="hero small-hero">
+<div class="hero-text">
+    <h1>Immersive Cultural Experiences</h1>
+    <p>Book authentic workshops, eco-tours, and community-based activities with locals.</p>
+</div>
+</section>
+
+<section class="experiences">
+<div class="experience">
+    <h2>Traditional Pottery Workshop</h2>
+    <p>Join a hands-on pottery class led by local artisans in Musanze.</p>
+    <span>$15 | 2 hours</span><br><br>
+    <a href="{{ url_for('booking') }}" class="btn-book">Book Now</a>
+</div>
+
+<div class="experience">
+    <h2>Tea Plantation Eco Tour</h2>
+    <p>Explore a scenic tea plantation, learn sustainable farming, and enjoy tea tasting.</p>
+    <span>$20 | Half Day</span><br><br>
+    <a href="{{ url_for('booking') }}" class="btn-book">Book Now</a>
+</div>
+
+<div class="experience">
+    <h2>Drumming & Dance Festival</h2>
+    <p>Attend a vibrant cultural event featuring Rwandan drumming and dance.</p>
+    <span>Free | Evening Event</span><br><br>
+    <a href="{{ url_for('booking') }}" class="btn-book">Book Now</a>
+</div>
+</section>
+{% endblock %}

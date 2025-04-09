@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block title %}Book Experience{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='booking.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="booking-form">
+<h1>Book Your Experience</h1>
+<form action="{{ url_for('booking') }}" method="post" onsubmit="return validateForm();">
+
+    <label for="name">Full Name</label>
+    <input type="text" id="name" name="name" required>
+
+    <label for="email">Email Address</label>
+    <input type="email" id="email" name="email" required>
+
+    <label for="experience">Select Experience</label>
+    <select id="experience" name="experience">
+    <option value="pottery">Traditional Pottery Workshop</option>
+    <option value="tea-tour">Tea Plantation Eco Tour</option>
+    <option value="festival">Drumming & Dance Festival</option>
+    </select>
+
+    <label for="date">Preferred Date</label>
+    <input type="date" id="date" name="date" required>
+
+    <button type="submit">Submit Booking</button>
+</form>
+</section>
+{% endblock %}

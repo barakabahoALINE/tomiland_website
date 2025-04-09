@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+
+{% block title %}Booking Confirmed{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='booking.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="booking-form">
+<h1>Thank You, {{ name }}!</h1>
+<p>Your booking for <strong>{{ experience }}</strong> on <strong>{{ date }}</strong> has been received.</p>
+<p>We’ll get in touch with more details soon.</p>
+<br>
+<a href="{{ url_for('booking') }}" class="btn-book">Book Another</a>
+</section>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+
+{% block title %}Destinations{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='destinations.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="hero small-hero">
+<div class="hero-text">
+    <h1>Explore Unique Destinations</h1>
+    <p>Discover immersive, local, and eco-friendly travel spots curated for you.</p>
+</div>
+</section>
+
+<section class="features destinations">
+<div class="feature">
+    <h2>Kibuye, Rwanda</h2>
+    <p>Enjoy peaceful lakeside views and community-run eco-lodges.</p>
+</div>
+<div class="feature">
+    <h2>Zanzibar, Tanzania</h2>
+    <p>Explore Swahili culture, local spice farms, and sustainable beach resorts.</p>
+</div>
+<div class="feature">
+    <h2>Volcanoes National Park</h2>
+    <p>Go on an eco-conscious gorilla trek with local conservation guides.</p>
+</div>
+</section>
+{% endblock %}
