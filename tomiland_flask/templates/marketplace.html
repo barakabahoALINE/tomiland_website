@@ -15,28 +15,16 @@
 </section>
 
 <section class="marketplace">
+{% for id, product in products.items() %}
 <div class="product-card">
-    <img src="{{ url_for('static', filename='images/basket.jpg') }}" alt="Handwoven Basket">
-    <h2>Handwoven Basket</h2>
-    <p>Made by local artisans using natural fibers. Perfect for decor or storage.</p>
-    <span>$12</span>
+    <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+    <h2>{{ product.name }}</h2>
+    <p>{{ product.description }}</p>
+    <span>${{ product.price }}</span>
+    <a href="{{ url_for('add_to_cart', product_id=id) }}">
     <button>Add to Cart</button>
+    </a>
 </div>
-
-<div class="product-card">
-    <img src="{{ url_for('static', filename='images/beads.jpg') }}" alt="Beaded Bracelet">
-    <h2>Beaded Bracelet</h2>
-    <p>Colorful and unique, handcrafted using traditional beadwork techniques.</p>
-    <span>$8</span>
-    <button>Add to Cart</button>
-</div>
-
-<div class="product-card">
-    <img src="{{ url_for('static', filename='images/coffee.jpg') }}" alt="Local Coffee">
-    <h2>Local Coffee Beans</h2>
-    <p>Freshly roasted, organic beans sourced directly from Rwandan farmers.</p>
-    <span>$15</span>
-    <button>Add to Cart</button>
-</div>
+{% endfor %}
 </section>
 {% endblock %}

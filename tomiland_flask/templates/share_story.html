@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Share Your Story{% endblock %}
+
+{% block content %}
+<section class="share-story-form">
+<h1>Share Your Experience</h1>
+<form method="POST" action="{{ url_for('share_story') }}">
+    <label for="name">Your Name</label>
+    <input type="text" name="name" id="name" required>
+
+    <label for="title">Story Title</label>
+    <input type="text" name="title" id="title" required>
+
+    <label for="story">Your Story</label>
+    <textarea name="story" id="story" rows="6" required></textarea>
+
+    <button type="submit">Submit Story</button>
+</form>
+</section>
+{% endblock %}

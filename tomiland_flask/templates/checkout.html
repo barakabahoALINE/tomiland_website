@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+
+{% block title %}Checkout{% endblock %}
+
+{% block content %}
+<section class="checkout-form">
+<h1>Checkout</h1>
+<form method="POST" action="{{ url_for('checkout') }}">
+    <label for="name">Full Name</label>
+    <input type="text" name="name" id="name" required>
+
+    <label for="email">Email Address</label>
+    <input type="email" name="email" id="email" required>
+
+    <label for="address">Delivery Address</label>
+    <textarea name="address" id="address" required></textarea>
+
+    <button type="submit">Confirm Order</button>
+</form>
+</section>
+{% endblock %}

@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block title %}Community{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{{ url_for('static', filename='community.css') }}">
+{% endblock %}
+
+{% block content %}
+<section class="hero small-hero">
+<div class="hero-text">
+    <h1>Tomiland Travelers' Community</h1>
+    <p>Connect, share stories, and be inspired by fellow adventurers.</p>
+</div>
+</section>
+
+<section class="community-section">
+<h2>Traveler Testimonials</h2>
+<div class="testimonials">
+    <div class="testimonial">
+    <p>"I booked the tea plantation tour and it was magical. The locals were so welcoming!"</p>
+    <h4>- Amina, Kenya</h4>
+    </div>
+    <div class="testimonial">
+    <p>"The drumming festival was a once-in-a-lifetime experience. I'll never forget it."</p>
+    <h4>- David, USA</h4>
+    </div>
+    <div class="testimonial">
+    <p>"I loved supporting local artisans through the marketplace. Great quality products!"</p>
+    <h4>- Chantal, Rwanda</h4>
+    </div>
+</div>
+
+<div class="share-section">
+    <h3>Want to share your story?</h3>
+    <p>We’d love to hear from you! Submit your experience to inspire others.</p>
+    <a href="{{ url_for('share_story') }}" class="btn-share">Share Your Story</a>
+</div>
+</section>
+{% endblock %}

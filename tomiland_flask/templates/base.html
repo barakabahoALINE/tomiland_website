@@ -5,24 +5,63 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tomiland | {% block title %}{% endblock %}</title>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 {% block extra_css %}{% endblock %}
 </head>
 <body>
-<header>
-    <div class="logo"><img src="{{ url_for('static', filename='images/logo.jpeg') }}"></div>
-    <nav>
-    <ul>
+<!-- Top Header: Logo + Search -->
+<!-- Top header: Logo + Search -->
+<div class="top-header">
+    <div class="logo">
+    <a href="{{ url_for('index') }}">
+        <img src="{{ url_for('static', filename='images/logo.jpeg') }}" alt="Tomiland Logo">
+    </a>
+    </div>
+
+    <form id="search-form" class="search-form">
+    <input type="text" name="query" id="search-query" placeholder="Search Tomiland..." required>
+    <button type="submit" title="Search">
+        <i class="fas fa-search"></i>
+    </button>
+    </form>
+</div>
+
+<!-- Bottom nav bar -->
+<header class="main-header">
+    <nav class="main-nav">
+    <ul class="nav-left">
         <li><a href="{{ url_for('index') }}">Home</a></li>
         <li><a href="{{ url_for('destinations') }}">Destinations</a></li>
         <li><a href="{{ url_for('experiences') }}">Experiences</a></li>
         <li><a href="{{ url_for('marketplace') }}">Marketplace</a></li>
-        <li><a href="#">Community</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="{{ url_for('community') }}">Community</a></li>
+    </ul>
+
+    <ul class="nav-right">
+        <li class="cart-wrapper">
+        <a href="{{ url_for('cart') }}" class="btn-cart">
+            <i class="fas fa-shopping-cart"></i>
+            {% if cart_count > 0 %}
+            <span class="cart-badge">{{ cart_count }}</span>
+            {% endif %}
+        </a>
+        </li>
+        <li>
+        {% if 'user' in session %}
+            <a href="{{ url_for('logout') }}" class="btn-nav">Logout</a>
+        {% else %}
+            <a href="{{ url_for('login') }}" class="btn-nav">Login</a>
+        {% endif %}
+        </li>
     </ul>
     </nav>
 </header>
+
+
 
 <main>
     {% block content %}{% endblock %}
@@ -31,5 +70,46 @@
 <footer>
     <p>&copy; 2025 Tomiland. All rights reserved.</p>
 </footer>
+<script>
+    document.getElementById('search-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    
+    const query = document.getElementById('search-query').value;
+    const resultsContainer = document.getElementById('search-results');
+    const spinner = document.getElementById('search-loading');
+      resultsContainer.innerHTML = ''; // Clear previous results
+      spinner.style.display = 'block'; // Show spinner
+    
+    fetch('/search', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query })
+    })
+    .then(response => response.json())
+    .then(data => {
+        spinner.style.display = 'none'; // Hide spinner
+    
+        if (data.results.length === 0) {
+        resultsContainer.innerHTML = '<p>No results found.</p>';
+        } else {
+        data.results.forEach(item => {
+            const div = document.createElement('div');
+            div.classList.add('search-item');
+            div.innerHTML = `
+            <h3>${item.name}</h3>
+            <p>Price: $${item.price}</p>
+            `;
+            resultsContainer.appendChild(div);
+        });
+        }
+    })
+    .catch(() => {
+        spinner.style.display = 'none';
+        resultsContainer.innerHTML = '<p>Error retrieving results.</p>';
+    });
+    });
+    </script>
+    
+    
 </body>
 </html>

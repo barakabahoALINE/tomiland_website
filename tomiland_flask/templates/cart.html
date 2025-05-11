@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Your Cart{% endblock %}
+
+{% block content %}
+<section class="cart-page">
+<h1>Your Shopping Cart</h1>
+{% if cart_items %}
+    <ul class="cart-list">
+    {% for item in cart_items %}
+        <li>
+        <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}" class="cart-thumb">
+        <div>
+            <h2>{{ item.name }}</h2>
+            <div class="quantity-controls">
+                <form action="{{ url_for('update_quantity', product_id=item.id) }}" method="post">
+                <button name="action" value="decrease">-</button>
+                <span>{{ item.quantity }}</span>
+                <button name="action" value="increase">+</button>
+                </form>
+            </div>
+            
+            <p>Price: ${{ item.price }} | Subtotal: ${{ item.subtotal }}</p>
+        </div>
+        <form action="{{ url_for('remove_from_cart', product_id=item.id) }}" method="get">
+            <button type="submit" class="remove-btn">Remove</button>
+        </form>
+        
+        </li>
+    {% endfor %}
+    </ul>
+    <h3>Total: ${{ total }}</h3>
+    <a href="{{ url_for('checkout') }}" class="btn-book">Proceed to Checkout</a>
+
+    {% else %}
+    <div class="empty-cart">
+    <h2>Your cart is empty 😢</h2>
+    <p>Explore the <a href="{{ url_for('marketplace') }}">marketplace</a> to add items.</p>
+    </div>
+    {% endif %}
+    
+{% endblock %}
